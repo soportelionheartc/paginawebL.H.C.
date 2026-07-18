@@ -139,6 +139,12 @@ h4 { font-size: 1.05rem; margin-bottom: 6px; }
 
 .brand { display: flex; align-items: center; gap: 10px; color: var(--white); }
 .brand__mark { color: var(--gold-400); display: flex; }
+.brand__mark img {
+  width: 34px; height: 34px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(240, 207, 142, 0.35));
+}
+.brand__mark--footer img { width: 28px; height: 28px; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand__text strong { font-family: var(--ff-display); font-size: 1.1rem; letter-spacing: 0.02em; }
 .brand__text em { font-style: normal; font-size: 0.62rem; letter-spacing: 0.22em; color: var(--cyan-400); }
