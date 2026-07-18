@@ -47,7 +47,7 @@ revealEls.forEach(el => observer.observe(el));
 // how to swap it for Formspree/Netlify Forms later).
 const contactForm = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
-const CONTACT_EMAIL = 'lionheartcapital1303@gmail.com';
+const CONTACT_EMAIL = 'soportelionheartc@gmail.com';
 
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
