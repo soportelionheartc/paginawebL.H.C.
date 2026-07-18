@@ -340,6 +340,37 @@ h3 { font-size: 1.35rem; margin-bottom: 10px; }
   border-bottom: 1px solid var(--gold-400);
 }
 
+.service-group { margin-top: 70px; }
+.service-group__title {
+  text-align: center;
+  color: var(--gold-600);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--ff-sans);
+  border-bottom: 1px solid rgba(168, 129, 58, 0.3);
+  padding-bottom: 18px;
+  margin-bottom: 30px;
+}
+.services-subgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.mini-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease;
+}
+.mini-card:hover { transform: translateY(-5px); }
+.mini-card__icon { font-size: 1.5rem; display: block; margin-bottom: 10px; }
+.mini-card h4 { font-family: var(--ff-serif); font-size: 1.08rem; color: var(--navy-900); margin-bottom: 6px; }
+.mini-card p { color: var(--ink-soft); font-size: 0.88rem; }
+.service-group__cta { text-align: center; margin-top: 40px; }
+
 /* ============ Family Office ============ */
 .family-office {
   position: relative;
@@ -522,6 +553,7 @@ h3 { font-size: 1.35rem; margin-bottom: 10px; }
   .grid-2 { grid-template-columns: 1fr; }
   .values { grid-template-columns: 1fr 1fr; }
   .services-grid { grid-template-columns: 1fr 1fr; }
+  .services-subgrid { grid-template-columns: 1fr 1fr; }
   .fo-grid { grid-template-columns: 1fr 1fr; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
   .contact__grid { grid-template-columns: 1fr; }
@@ -530,6 +562,7 @@ h3 { font-size: 1.35rem; margin-bottom: 10px; }
 @media (max-width: 620px) {
   .values { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
+  .services-subgrid { grid-template-columns: 1fr; }
   .fo-grid { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
