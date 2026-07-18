@@ -42,15 +42,35 @@ const observer = new IntersectionObserver((entries) => {
 
 revealEls.forEach(el => observer.observe(el));
 
-// Contact form (front-end only — no backend configured yet)
+// Contact form — opens the visitor's email client with the message ready to send.
+// No backend is configured yet; this is a zero-setup stopgap (see README for
+// how to swap it for Formspree/Netlify Forms later).
 const contactForm = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
+const CONTACT_EMAIL = 'lionheartcapital1303@gmail.com';
 
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    formNote.textContent = '¡Gracias! Hemos recibido tu mensaje y te contactaremos muy pronto.';
-    contactForm.reset();
+    const data = new FormData(contactForm);
+    const nombre = (data.get('nombre') || '').toString().trim();
+    const correo = (data.get('correo') || '').toString().trim();
+    const telefono = (data.get('telefono') || '').toString().trim();
+    const servicio = (data.get('servicio') || '').toString().trim();
+    const mensaje = (data.get('mensaje') || '').toString().trim();
+
+    const subject = `Contacto web — ${servicio}`;
+    const body =
+      `Nombre: ${nombre}\n` +
+      `Correo: ${correo}\n` +
+      `Teléfono: ${telefono}\n` +
+      `Servicio de interés: ${servicio}\n\n` +
+      `Mensaje:\n${mensaje}`;
+
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    formNote.textContent = 'Abriendo tu programa de correo para enviarnos el mensaje...';
+    window.location.href = mailtoUrl;
   });
 }
 

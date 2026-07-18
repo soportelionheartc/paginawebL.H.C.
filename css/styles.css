@@ -697,7 +697,8 @@ h4 { font-size: 1.05rem; margin-bottom: 6px; }
   outline: none;
   border-color: var(--cyan-400);
 }
-.form-note { font-size: 0.85rem; color: var(--cyan-400); min-height: 1.2em; }
+.form-hint { font-size: 0.78rem; color: var(--ink-mute); text-align: center; }
+.form-note { font-size: 0.85rem; color: var(--cyan-400); min-height: 1.2em; text-align: center; }
 
 /* ============ Footer ============ */
 .footer {
