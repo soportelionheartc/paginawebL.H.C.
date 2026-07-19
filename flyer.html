@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lion Heart Capital S.A.S. | Contáctanos</title>
+<meta name="description" content="Asesoría financiera, Family Office e inversiones en Medellín, Colombia. Escríbenos por WhatsApp, correo o visita nuestra página web.">
+<link rel="icon" href="assets/favicon-lion.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+  :root {
+    --navy-950: #04060d;
+    --navy-900: #070c18;
+    --gold-400: #f0cf8e;
+    --gold-500: #d9b26a;
+    --gold-600: #b8873f;
+    --cyan-400: #6ff0ff;
+    --cyan-500: #35e5ff;
+    --violet-400: #a98bff;
+    --violet-500: #8f6bff;
+    --panel: rgba(255,255,255,0.045);
+    --border-soft: rgba(255,255,255,0.1);
+    --white: #f4f7fb;
+    --ink-soft: rgba(244,247,251,0.68);
+    --ink-mute: rgba(244,247,251,0.46);
+    --radius: 16px;
+    --ff-display: "Space Grotesk", sans-serif;
+    --ff-sans: "Manrope", sans-serif;
+    --ff-mono: "JetBrains Mono", monospace;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--ff-sans);
+    color: var(--white);
+    background: radial-gradient(ellipse at 20% -10%, #10203a 0%, var(--navy-950) 55%);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 780px; margin: 0 auto; padding: 0 22px; }
+
+  canvas#netCanvas { position: fixed; inset: 0; width: 100%; height: 100%; opacity: 0.5; pointer-events: none; z-index: 0; }
+  .bg-glow {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(circle at 85% 8%, rgba(53,229,255,0.12), transparent 45%),
+      radial-gradient(circle at 10% 92%, rgba(143,107,255,0.16), transparent 50%),
+      radial-gradient(circle at 50% 45%, rgba(217,178,106,0.08), transparent 55%);
+  }
+
+  main { position: relative; z-index: 2; padding: 56px 0 40px; }
+
+  .ticker {
+    position: relative; z-index: 2;
+    overflow: hidden;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    background: rgba(255,255,255,0.02);
+    padding: 10px 0;
+    margin-bottom: 44px;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .ticker__track {
+    display: flex; align-items: center; gap: 14px;
+    white-space: nowrap; width: max-content;
+    animation: ticker-scroll 26s linear infinite;
+    font-family: var(--ff-mono); font-size: 0.68rem; letter-spacing: 0.1em; color: var(--ink-soft);
+  }
+  .ticker__dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold-500); flex-shrink: 0; }
+  @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .brand-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 26px; }
+  .brand-row img { width: 64px; height: 64px; filter: drop-shadow(0 0 10px rgba(240,207,142,0.35)); }
+  .brand-text { line-height: 1.1; }
+  .brand-text strong { display: block; font-family: var(--ff-display); font-size: 1.5rem; }
+  .brand-text em { font-style: normal; font-size: 0.7rem; letter-spacing: 0.24em; color: var(--cyan-400); }
+
+  .pill-center { text-align: center; margin-bottom: 18px; }
+  .pill {
+    font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-400); border: 1px solid rgba(217,178,106,0.4); border-radius: 30px;
+    padding: 7px 18px; background: rgba(217,178,106,0.06); display: inline-block;
+  }
+
+  h1 {
+    font-family: var(--ff-display); text-align: center; font-size: clamp(2rem, 6vw, 2.9rem);
+    line-height: 1.15; margin-bottom: 18px;
+  }
+  h1 .accent {
+    background: linear-gradient(120deg, var(--gold-400), var(--cyan-400));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { text-align: center; color: var(--ink-soft); font-size: 1.05rem; max-width: 600px; margin: 0 auto 36px; }
+
+  .cta-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+    margin-bottom: 44px;
+  }
+  .cta-btn {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 18px; border-radius: 14px;
+    border: 1px solid var(--border-soft);
+    background: var(--panel);
+    backdrop-filter: blur(10px);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+  }
+  .cta-btn:hover { transform: translateY(-4px); box-shadow: 0 16px 30px -12px rgba(0,0,0,0.5); }
+  .cta-btn .ico { font-size: 1.5rem; flex-shrink: 0; }
+  .cta-btn .txt strong { display: block; font-size: 0.95rem; }
+  .cta-btn .txt span { font-size: 0.78rem; color: var(--ink-mute); }
+  .cta-btn--primary { border-color: rgba(217,178,106,0.5); background: linear-gradient(160deg, rgba(217,178,106,0.16), rgba(53,229,255,0.06)); }
+  .cta-btn--whatsapp:hover { border-color: #25D366; }
+  .cta-btn--call:hover { border-color: var(--cyan-500); }
+  .cta-btn--mail:hover { border-color: var(--violet-500); }
+
+  .section-label {
+    font-family: var(--ff-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-400); text-align: center; border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 14px; margin-bottom: 24px;
+  }
+
+  .services { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 40px; }
+  .svc {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--panel); border: 1px solid var(--border-soft); border-top: 3px solid var(--gold-500);
+    border-radius: var(--radius); padding: 18px 20px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .svc:hover { transform: translateY(-4px) scale(1.01); }
+  .svc.cyan { border-top-color: var(--cyan-500); }
+  .svc.cyan:hover { border-color: rgba(53,229,255,0.4); }
+  .svc.violet { border-top-color: var(--violet-500); }
+  .svc.violet:hover { border-color: rgba(143,107,255,0.4); }
+  .svc.featured { border-color: rgba(217,178,106,0.5); background: linear-gradient(160deg, rgba(217,178,106,0.14), rgba(53,229,255,0.06)); }
+  .svc:hover { border-color: rgba(217,178,106,0.4); }
+  .svc .ico { font-size: 1.7rem; line-height: 1; }
+  .svc h3 { font-family: var(--ff-display); font-size: 1.05rem; margin-bottom: 4px; }
+  .svc p { font-size: 0.88rem; color: var(--ink-soft); }
+  .svc .tag {
+    display: inline-block; font-family: var(--ff-mono); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--navy-950); background: linear-gradient(120deg, var(--gold-400), var(--gold-500));
+    border-radius: 20px; padding: 2px 10px; margin-bottom: 6px;
+  }
+  .svc-link { margin-left: auto; align-self: center; font-size: 1.2rem; opacity: 0.5; transition: opacity 0.2s, transform 0.2s; }
+  .svc:hover .svc-link { opacity: 1; transform: translateX(3px); }
+
+  .why-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 44px; }
+  .why-item { text-align: center; padding: 18px 12px; border-radius: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-soft); }
+  .why-item .ico { font-size: 1.5rem; margin-bottom: 8px; }
+  .why-item h4 { font-family: var(--ff-display); font-size: 0.92rem; margin-bottom: 4px; }
+  .why-item p { font-size: 0.76rem; color: var(--ink-soft); }
+
+  .qr-panel {
+    display: flex; align-items: center; gap: 20px; justify-content: center;
+    background: var(--panel); border: 1px solid var(--border-soft); border-radius: var(--radius);
+    padding: 22px; margin-bottom: 30px;
+  }
+  .qr-panel img { width: 96px; height: 96px; border-radius: 10px; background: #fff; padding: 6px; }
+  .qr-panel div strong { display: block; font-family: var(--ff-display); font-size: 1rem; margin-bottom: 4px; }
+  .qr-panel div span { font-size: 0.82rem; color: var(--ink-soft); }
+
+  footer { text-align: center; font-family: var(--ff-mono); font-size: 0.72rem; color: var(--ink-mute); padding: 24px 0 10px; position: relative; z-index: 2; }
+  footer a { color: var(--cyan-400); }
+
+  @media (max-width: 560px) {
+    .cta-grid { grid-template-columns: 1fr; }
+    .why-row { grid-template-columns: 1fr; }
+    .qr-panel { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="netCanvas"></canvas>
+<div class="bg-glow"></div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span>ASESORÍA FINANCIERA</span><span class="ticker__dot"></span>
+    <span>GESTIÓN DE FAMILY OFFICES</span><span class="ticker__dot"></span>
+    <span>ANALÍTICA CON IA</span><span class="ticker__dot"></span>
+    <span>MERCADOS Y DERIVADOS</span><span class="ticker__dot"></span>
+    <span>ASESORÍA FINANCIERA</span><span class="ticker__dot"></span>
+    <span>GESTIÓN DE FAMILY OFFICES</span><span class="ticker__dot"></span>
+    <span>ANALÍTICA CON IA</span><span class="ticker__dot"></span>
+    <span>MERCADOS Y DERIVADOS</span><span class="ticker__dot"></span>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+
+    <div class="brand-row">
+      <img src="assets/lion-mark.png" alt="Lion Heart Capital">
+      <div class="brand-text">
+        <strong>LION HEART</strong>
+        <em>CAPITAL S.A.S.</em>
+      </div>
+    </div>
+
+    <div class="pill-center"><span class="pill">Sector financiero colombiano · Medellín</span></div>
+
+    <h1>Asesoría financiera con <span class="accent">visión de legado</span></h1>
+    <p class="sub">Family Office, inversiones, analítica con IA y consultoría financiera —
+      escríbenos y conversemos sobre tu caso.</p>
+
+    <div class="cta-grid">
+      <a class="cta-btn cta-btn--primary" href="https://paginaweb-l-h-c.vercel.app" target="_blank" rel="noopener">
+        <span class="ico">🌐</span>
+        <span class="txt"><strong>Visitar página web</strong><span>Conoce todos los servicios</span></span>
+      </a>
+      <a class="cta-btn cta-btn--whatsapp" href="https://wa.me/573163581762?text=Hola%2C%20quiero%20más%20información%20sobre%20Lion%20Heart%20Capital" target="_blank" rel="noopener">
+        <span class="ico">💬</span>
+        <span class="txt"><strong>Escribir por WhatsApp</strong><span>Respuesta directa</span></span>
+      </a>
+      <a class="cta-btn cta-btn--call" href="tel:+573163581762">
+        <span class="ico">📞</span>
+        <span class="txt"><strong>Llamar ahora</strong><span>316 358 1762</span></span>
+      </a>
+      <a class="cta-btn cta-btn--mail" href="mailto:soportelionheartc@gmail.com">
+        <span class="ico">✉️</span>
+        <span class="txt"><strong>Enviar correo</strong><span>soportelionheartc@gmail.com</span></span>
+      </a>
+    </div>
+
+    <p class="section-label">Nuestros servicios</p>
+    <div class="services">
+      <a class="svc featured" href="https://paginaweb-l-h-c.vercel.app/#family-office" target="_blank" rel="noopener">
+        <span class="ico">🦁</span>
+        <span>
+          <span class="tag">Servicio insignia</span>
+          <h3>Gestión de Family Offices</h3>
+          <p>Administración integral del patrimonio familiar: inversiones, gobierno familiar y sucesión.</p>
+        </span>
+        <span class="svc-link">↗</span>
+      </a>
+      <a class="svc" href="https://paginaweb-l-h-c.vercel.app/#servicios" target="_blank" rel="noopener">
+        <span class="ico">📈</span>
+        <span><h3>Asesoría Financiera y de Inversión</h3><p>Diagnóstico, plan financiero y gestión de portafolios a la medida.</p></span>
+        <span class="svc-link">↗</span>
+      </a>
+      <a class="svc cyan" href="https://paginaweb-l-h-c.vercel.app/#servicios" target="_blank" rel="noopener">
+        <span class="ico">🧾</span>
+        <span><h3>Servicios Contables y Tributarios</h3><p>Contabilidad, declaraciones de renta y asesoría fiscal.</p></span>
+        <span class="svc-link">↗</span>
+      </a>
+      <a class="svc violet" href="https://paginaweb-l-h-c.vercel.app/#servicios" target="_blank" rel="noopener">
+        <span class="ico">🤖</span>
+        <span><h3>Analítica con IA</h3><p>Modelos predictivos para mejores decisiones de inversión.</p></span>
+        <span class="svc-link">↗</span>
+      </a>
+    </div>
+
+    <div class="why-row">
+      <div class="why-item"><div class="ico">🛡️</div><h4>Confianza</h4><p>Firma constituida legalmente en Colombia.</p></div>
+      <div class="why-item"><div class="ico">🤝</div><h4>Cercanía</h4><p>Atención personalizada y directa.</p></div>
+      <div class="why-item"><div class="ico">🏛️</div><h4>Legado</h4><p>Visión de largo plazo para tu patrimonio.</p></div>
+    </div>
+
+    <div class="qr-panel">
+      <img src="assets/qr-code.png" alt="Código QR">
+      <div>
+        <strong>Escanea y visita nuestra web</strong>
+        <span>paginaweb-l-h-c.vercel.app</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  NIT 901.868.428-2 · Registrada ante la Cámara de Comercio de Medellín para Antioquia<br>
+  © <span id="year"></span> Lion Heart Capital S.A.S. · <a href="https://paginaweb-l-h-c.vercel.app" target="_blank" rel="noopener">paginaweb-l-h-c.vercel.app</a>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const netCanvas = document.getElementById('netCanvas');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (netCanvas && !prefersReducedMotion) {
+  const ctx = netCanvas.getContext('2d');
+  const colors = ['rgba(217,178,106,0.8)', 'rgba(53,229,255,0.8)', 'rgba(143,107,255,0.8)'];
+  let nodes = [];
+  let width = 0, height = 0, rafId = null;
+
+  function resize() {
+    width = netCanvas.clientWidth;
+    height = netCanvas.clientHeight;
+    netCanvas.width = width * devicePixelRatio;
+    netCanvas.height = height * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    const count = Math.min(50, Math.round((width * height) / 24000));
+    nodes = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    }));
+  }
+
+  function step() {
+    ctx.clearRect(0, 0, width, height);
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > width) n.vx *= -1;
+      if (n.y < 0 || n.y > height) n.vy *= -1;
+    });
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) {
+          ctx.strokeStyle = `rgba(150,180,210,${0.12 * (1 - dist / 130)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+    }
+    nodes.forEach(n => {
+      ctx.fillStyle = n.color;
+      ctx.beginPath(); ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2); ctx.fill();
+    });
+    rafId = requestAnimationFrame(step);
+  }
+
+  resize(); step();
+  window.addEventListener('resize', () => { cancelAnimationFrame(rafId); resize(); step(); });
+}
+</script>
+</body>
+</html>
