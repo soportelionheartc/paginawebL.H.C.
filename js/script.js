@@ -69,7 +69,7 @@ if (contactForm) {
 
     const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    formNote.textContent = 'Abriendo tu programa de correo para enviarnos el mensaje...';
+    formNote.textContent = window.LHC_I18N ? window.LHC_I18N.t('form.sending') : 'Abriendo tu programa de correo para enviarnos el mensaje...';
     window.location.href = mailtoUrl;
   });
 }
