@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: lion-heart-capital
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+    routes:
+      - type: rewrite
+        source: /404
+        destination: /index.html
